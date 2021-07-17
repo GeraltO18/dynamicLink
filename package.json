@@ -4,14 +4,11 @@
   "description": "changing url with time",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "author": "ranjith",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  },
+  "devDependencies": {},
   "dependencies": {
     "express": "^4.17.1",
     "moment": "^2.29.1",
