@@ -1,24 +1,17 @@
 const express = require("express");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const app = express();
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 
 // app.route('/g1').get((req,res) => {
 //     res.redirect(classurl1)
 // })
-let nowtime = moment();
-
-nowtime = moment();
-summa = moment("08:25", "h:mm a");
-
-console.log(moment("01:45 pm", "h:mm a").format("hh:mm a"));
-
-let classurl = null;
 
 app.route("/g2").get((req, res) => {
+  let nowtime = moment().tz("Asia/Colombo");
   switch (nowtime.day()) {
     case 0:
-
+      res.send("<h1>Innaiku sunday da dei<h1>");
     case 1:
       if (
         nowtime.isBetween(moment("08:25", "h:mm a"), moment("09:30", "h:mm a"))
@@ -27,7 +20,7 @@ app.route("/g2").get((req, res) => {
       } else if (
         nowtime.isBetween(moment("09:40", "h:mm a"), moment("10:45", "h:mm a"))
       ) {
-        return res.status(301).redirect("https://ww.geoguessr.com");
+        return res.status(301).redirect("https://www.instagram.com");
       } else if (
         nowtime.isBetween(
           moment("10:55", "h:mm a"),
@@ -51,7 +44,7 @@ app.route("/g2").get((req, res) => {
         return res.redirect("https://www.instagram.com");
       } else {
         return res.send(
-          "innum time irruku aprm va(still there is time come back later)"
+          "innum time irruku aprm va (still there is time come back later)"
         );
       }
 
@@ -63,7 +56,7 @@ app.route("/g2").get((req, res) => {
       } else if (
         nowtime.isBetween(moment("09:40", "h:mm a"), moment("10:45", "h:mm a"))
       ) {
-        return res.status(301).redirect("https://ww.geoguessr.com");
+        return res.status(301).redirect("https://www.instagram.com");
       } else if (
         nowtime.isBetween(
           moment("10:55", "h:mm a"),
@@ -87,7 +80,7 @@ app.route("/g2").get((req, res) => {
         return res.redirect("https://www.instagram.com");
       } else {
         return res.send(
-          "innum time irruku aprm va(still there is time come back later)"
+          "innum time irruku aprm va (still there is time come back later)"
         );
       }
 
@@ -99,7 +92,7 @@ app.route("/g2").get((req, res) => {
       } else if (
         nowtime.isBetween(moment("09:40", "h:mm a"), moment("10:45", "h:mm a"))
       ) {
-        return res.status(301).redirect("https://ww.geoguessr.com");
+        return res.status(301).redirect("https://www.instagram.com");
       } else if (
         nowtime.isBetween(
           moment("10:55", "h:mm a"),
@@ -123,7 +116,7 @@ app.route("/g2").get((req, res) => {
         return res.redirect("https://www.instagram.com");
       } else {
         return res.send(
-          "innum time irruku aprm va(still there is time come back later)"
+          "innum time irruku aprm va (still there is time come back later)"
         );
       }
 
@@ -135,7 +128,7 @@ app.route("/g2").get((req, res) => {
       } else if (
         nowtime.isBetween(moment("09:40", "h:mm a"), moment("10:45", "h:mm a"))
       ) {
-        return res.status(301).redirect("https://ww.geoguessr.com");
+        return res.status(301).redirect("https://www.instagram.com");
       } else if (
         nowtime.isBetween(
           moment("10:55", "h:mm a"),
@@ -171,7 +164,7 @@ app.route("/g2").get((req, res) => {
       } else if (
         nowtime.isBetween(moment("09:40", "h:mm a"), moment("10:45", "h:mm a"))
       ) {
-        return res.status(301).redirect("https://ww.geoguessr.com");
+        return res.status(301).redirect("https://www.instagram.com");
       } else if (
         nowtime.isBetween(
           moment("10:55", "h:mm a"),
@@ -207,7 +200,7 @@ app.route("/g2").get((req, res) => {
       } else if (
         nowtime.isBetween(moment("09:40", "h:mm a"), moment("10:45", "h:mm a"))
       ) {
-        return res.status(301).redirect("https://ww.geoguessr.com");
+        return res.status(301).redirect("https://www.instagram.com");
       } else if (
         nowtime.isBetween(
           moment("10:55", "h:mm a"),
@@ -231,10 +224,10 @@ app.route("/g2").get((req, res) => {
         return res.redirect("https://www.instagram.com");
       } else {
         return res.send(
-          "innum time irruku aprm va(still there is time come back later)"
+          "<h1>innum time irruku aprm va (still there is time come back later)<h1>"
         );
       }
   }
 });
 
-app.listen(PORT||3000);
+app.listen(PORT || 3000);
