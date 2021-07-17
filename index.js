@@ -1,6 +1,7 @@
 const express = require("express");
 const moment = require("moment");
 const app = express();
+const PORT = process.env.PORT
 
 // app.route('/g1').get((req,res) => {
 //     res.redirect(classurl1)
@@ -236,4 +237,4 @@ app.route("/g2").get((req, res) => {
   }
 });
 
-app.listen(3000);
+app.listen(PORT||3000);
