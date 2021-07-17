@@ -15,8 +15,6 @@ console.log(moment("01:45 pm", "h:mm a").format("hh:mm a"));
 
 let classurl = null;
 
-app.use("/g2");
-
 app.route("/g2").get((req, res) => {
   switch (nowtime.day()) {
     case 0:
