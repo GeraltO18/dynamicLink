@@ -84,7 +84,7 @@ app.route("/g2").get((req, res) => {
         return res.status(301).redirect(process.env.WS);
       } else if (thirdHourInterval.contains(nowtime)) {
         return res.status(301).redirect(process.env.DAA);
-      } else if (wedfourthHourInterval.contains(nowtime)) {
+      } else if (wedFourthHourInterval.contains(nowtime)) {
         return res.status(301).redirect(process.env.IOTLAB);
       } else {
         return res.send(
