@@ -18,7 +18,7 @@ const firstHourInterval = Interval.fromDateTimes(
   Datatime.fromObject({ hour: 09, minute: 35 }, { zone: timezone })
 );
 const secondHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 09, minute: 45 }, { zone: timezone }),
+  DateTime.fromObject({ hour: 09, minute: 40 }, { zone: timezone }),
   Datatime.fromObject({ hour: 10, minute: 50 }, { zone: timezone })
 );
 const thirdHourInterval = Interval.fromDateTimes(
