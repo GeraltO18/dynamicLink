@@ -45,7 +45,6 @@ app.route("/g2").get((req, res) => {
       res.send("<h1>Innaiku sunday da dei<h1>");
     case 1:
       if (firstHourInterval.contains(nowtime)) {
-        console.log("trigger");
         return res.status(301).redirect(process.env.SOFTE);
       } else if (secondHourInterval.contains(nowtime)) {
         return res.status(301).redirect(process.env.DM);
