@@ -8,8 +8,13 @@
       html, body {
       display: flex;
       justify-content: center;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
       font-family: Roboto, Arial, sans-serif;
       font-size: 15px;
+      --gray: #34495e;
+  --darkgray: #2c3e50;
       }
       form {
       border: 5px solid #f1f1f1;
@@ -24,7 +29,7 @@
       }
      
       button {
-      background-color: #4286f4;
+      background-color: black;
       color: white;
       padding: 14px 0;
       margin: 10px 0;
@@ -47,76 +52,108 @@
       padding: 16px 0;
       text-align:left;
       }
-      .popup {
-  position: relative;
-  display: inline-block;
+      select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: var(--darkgray);
+  background-image: none;
   cursor: pointer;
 }
-
-/* The actual popup (appears on top) */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
   position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+      @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
 
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
-}
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
-}
-     
     </style>
   </head>
   
   <body>
-    <form action="/g2/update" method="POST">
+    <form action="/g2/update" method="POST" id="updateform">
       <h1>Class updater</h1>
       
       <div class="formcontainer">
       <div class="container">
         <label for="day"><strong>Day</strong></label>
-        <input type="text" placeholder="Enter Day" name="day" required>
+        <div class="select">
+          <select name="day" form="updateform">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
         <label for="hour"><strong>Hour</strong></label>
-        <input type="text" placeholder="Enter Hour" name="hour" required>
+        <div class="select">
+          <select name="hour" form="updateform">
+            <option value="firstHour">firstHour</option>
+            <option value="secondHour">secondHour</option>
+            <option value="thirdHour">thirdHour</option>
+            <option value="fourthHour">fourthHour</option>
+            <option value="fifthHour">fifthHour</option>
+          </select>
+        </div>
         <label for="link"><strong>Classlink</strong></label>
-        <input type="text" placeholder="Enter link" name="classLink" required>
-      </div>
-      <div class="popup" onclick="popups()">
-        <span class="Submit" id="submit-btn"></span>
+        <div class="select">
+          <select name="classLink" form="updateform">
+            <option value="SOFTE">SOFTE</option>
+            <option value="DM">DM</option>
+            <option value="DMLAB">DMLAB</option>
+            <option value="ML">ML</option>
+            <option value="DAA">DAA</option>
+            <option value="DAALAB">DAALAB</option>
+            <option value="IOT">IOT</option>
+            <option value="IOTLAB">IOTLAB</option>
+            <option value="WS">WS</option>
+            <option value="CYBER">CYBER</option>
+            <option value="TWM">TWM</option>
+            <option value="LIB">LIB</option>
+          </select>
+        </div>
       </div>
       <button id="submit-btn" type="submit" ><strong>SUBMIT</strong></button>
     </form>

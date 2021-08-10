@@ -35,43 +35,43 @@ let timeTable = {
   },
   2: {
     firstHour: classes.LIB,
-    secondHour: classes.DM,
-    thirdHour: classes.ML,
-    fourthHour: classes.IOT,
-    fifthHour: classes.WS,
+    secondHour: classes.IOT,
+    thirdHour: classes.SOFTE,
+    fourthHour: classes.DM,
+    fifthHour: classes.CYBER,
   },
   3: {
-    firstHour: classes.SOFTE,
-    secondHour: classes.DM,
-    thirdHour: classes.ML,
-    fourthHour: classes.IOT,
-    fifthHour: classes.WS,
+    firstHour: classes.ML,
+    secondHour: classes.WS,
+    thirdHour: classes.DAA,
+    fourthHour: classes.IOTLAB,
+    fifthHour: classes.IOTLAB,
   },
   4: {
-    firstHour: classes.SOFTE,
+    firstHour: classes.CYBER,
     secondHour: classes.DM,
-    thirdHour: classes.ML,
-    fourthHour: classes.IOT,
-    fifthHour: classes.WS,
+    thirdHour: classes.SOFTE,
+    fourthHour: classes.DAALAB,
+    fifthHour: classes.LIB,
   },
   5: {
-    firstHour: classes.SOFTE,
-    secondHour: classes.DM,
-    thirdHour: classes.ML,
-    fourthHour: classes.IOT,
-    fifthHour: classes.WS,
+    firstHour: classes.WS,
+    secondHour: classes.DAA,
+    thirdHour: classes.IOT,
+    fourthHour: classes.DMLAB,
+    fifthHour: classes.DMLAB,
   },
   6: {
-    firstHour: classes.SOFTE,
-    secondHour: classes.DM,
-    thirdHour: classes.ML,
-    fourthHour: classes.IOT,
-    fifthHour: classes.WS,
+    firstHour: classes.TWM,
+    secondHour: classes.DAA,
+    thirdHour: classes.CYBER,
+    fourthHour: classes.ML,
+    fifthHour: classes.SOFTE,
   },
 };
 
 cron.schedule("0 0 * * 0", () => {
-  let timeTable = {
+  timeTable = {
     1: {
       firstHour: classes.SOFTE,
       secondHour: classes.DM,
@@ -81,41 +81,42 @@ cron.schedule("0 0 * * 0", () => {
     },
     2: {
       firstHour: classes.LIB,
-      secondHour: classes.DM,
-      thirdHour: classes.ML,
-      fourthHour: classes.IOT,
-      fifthHour: classes.WS,
+      secondHour: classes.IOT,
+      thirdHour: classes.SOFTE,
+      fourthHour: classes.DM,
+      fifthHour: classes.CYBER,
     },
     3: {
-      firstHour: classes.SOFTE,
-      secondHour: classes.DM,
-      thirdHour: classes.ML,
-      fourthHour: classes.IOT,
-      fifthHour: classes.WS,
+      firstHour: classes.ML,
+      secondHour: classes.WS,
+      thirdHour: classes.DAA,
+      fourthHour: classes.IOTLAB,
+      fifthHour: classes.IOTLAB,
     },
     4: {
-      firstHour: classes.SOFTE,
+      firstHour: classes.CYBER,
       secondHour: classes.DM,
-      thirdHour: classes.ML,
-      fourthHour: classes.IOT,
-      fifthHour: classes.WS,
+      thirdHour: classes.SOFTE,
+      fourthHour: classes.DAALAB,
+      fifthHour: classes.LIB,
     },
     5: {
-      firstHour: classes.SOFTE,
-      secondHour: classes.DM,
-      thirdHour: classes.ML,
-      fourthHour: classes.IOT,
-      fifthHour: classes.WS,
+      firstHour: classes.WS,
+      secondHour: classes.DAA,
+      thirdHour: classes.IOT,
+      fourthHour: classes.DMLAB,
+      fifthHour: classes.DMLAB,
     },
     6: {
-      firstHour: classes.SOFTE,
-      secondHour: classes.DM,
-      thirdHour: classes.ML,
-      fourthHour: classes.IOT,
-      fifthHour: classes.WS,
+      firstHour: classes.TWM,
+      secondHour: classes.DAA,
+      thirdHour: classes.CYBER,
+      fourthHour: classes.ML,
+      fifthHour: classes.SOFTE,
     },
   };
 });
+
 const keyVal = {
   SOFTE: classes.SOFTE,
   DM: classes.DM,
@@ -134,8 +135,10 @@ const keyVal = {
 app.route("/g2/update").post((req, res) => {
   const { day, hour, classLink } = req.body;
   timeTable[day][hour] = keyVal[classLink];
+  console.log(timeTable);
   res.redirect("/g2/update");
 });
+
 app.route("/g2/update").get((req, res) => {
   res.render("update.html");
 });
