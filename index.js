@@ -1,59 +1,163 @@
 const express = require("express");
 const { DateTime } = require("luxon");
-const luxon = require("luxon");
 const app = express();
 const dotenv = require("dotenv");
-const PORT = process.env.PORT;
+const cron = require("node-cron");
+const bodyParser = require("body-parser");
+const {
+  firstHourInterval,
+  secondHourInterval,
+  thirdHourInterval,
+  fourthHourInterval,
+  fifthHourInterval,
+  labFourthHourInterval,
+  timezone,
+} = require("./timeInterval/timeInterval");
 
 dotenv.config();
-
+const PORT = process.env.PORT;
+app.engine("html", require("ejs").renderFile);
+app.set("view engine", "ejs");
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 // app.route('/g1').get((req,res) => {
 //     res.redirect(classurl1)
 // })
-const Datatime = luxon.DateTime;
-const Interval = luxon.Interval;
-const timezone = "Asia/Colombo";
-const firstHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 08, minute: 25 }, { zone: timezone }),
-  Datatime.fromObject({ hour: 09, minute: 35 }, { zone: timezone })
-);
-const secondHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 09, minute: 40 }, { zone: timezone }),
-  Datatime.fromObject({ hour: 10, minute: 50 }, { zone: timezone })
-);
-const thirdHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 10, minute: 55 }, { zone: timezone }),
-  Datatime.fromObject({ hour: 12, minute: 05 }, { zone: timezone })
-);
-const fourthHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 13, minute: 40 }, { zone: timezone }),
-  Datatime.fromObject({ hour: 14, minute: 50 }, { zone: timezone })
-);
-const wedFourthHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 13, minute: 40 }, { zone: timezone }),
-  Datatime.fromObject({ hour: 16, minute: 05 }, { zone: timezone })
-);
-const fifthHourInterval = Interval.fromDateTimes(
-  DateTime.fromObject({ hour: 14, minute: 55 }, { zone: timezone }),
-  Datatime.fromObject({ hour: 16, minute: 05 }, { zone: timezone })
-);
+classes = process.env;
+
+let timeTable = {
+  1: {
+    firstHour: classes.SOFTE,
+    secondHour: classes.DM,
+    thirdHour: classes.ML,
+    fourthHour: classes.IOT,
+    fifthHour: classes.WS,
+  },
+  2: {
+    firstHour: classes.LIB,
+    secondHour: classes.DM,
+    thirdHour: classes.ML,
+    fourthHour: classes.IOT,
+    fifthHour: classes.WS,
+  },
+  3: {
+    firstHour: classes.SOFTE,
+    secondHour: classes.DM,
+    thirdHour: classes.ML,
+    fourthHour: classes.IOT,
+    fifthHour: classes.WS,
+  },
+  4: {
+    firstHour: classes.SOFTE,
+    secondHour: classes.DM,
+    thirdHour: classes.ML,
+    fourthHour: classes.IOT,
+    fifthHour: classes.WS,
+  },
+  5: {
+    firstHour: classes.SOFTE,
+    secondHour: classes.DM,
+    thirdHour: classes.ML,
+    fourthHour: classes.IOT,
+    fifthHour: classes.WS,
+  },
+  6: {
+    firstHour: classes.SOFTE,
+    secondHour: classes.DM,
+    thirdHour: classes.ML,
+    fourthHour: classes.IOT,
+    fifthHour: classes.WS,
+  },
+};
+
+cron.schedule("0 0 * * 0", () => {
+  let timeTable = {
+    1: {
+      firstHour: classes.SOFTE,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+    2: {
+      firstHour: classes.LIB,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+    3: {
+      firstHour: classes.SOFTE,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+    4: {
+      firstHour: classes.SOFTE,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+    5: {
+      firstHour: classes.SOFTE,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+    6: {
+      firstHour: classes.SOFTE,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+  };
+});
+const keyVal = {
+  SOFTE: classes.SOFTE,
+  DM: classes.DM,
+  ML: classes.ML,
+  WS: classes.WS,
+  CYBER: classes.CYBER,
+  LIB: classes.LIB,
+  IOT: classes.IOT,
+  IOTLAB: classes.IOTLAB,
+  DAA: classes.DAA,
+  DAALAB: classes.DAALAB,
+  DMLAB: classes.DMLAB,
+  TWM: classes.TWM,
+};
+
+app.route("/g2/update").post((req, res) => {
+  const { day, hour, classLink } = req.body;
+  timeTable[day][hour] = keyVal[classLink];
+  res.redirect("/g2/update");
+});
+app.route("/g2/update").get((req, res) => {
+  res.render("update.html");
+});
 
 app.route("/g2").get((req, res) => {
-  let nowtime = luxon.DateTime.now().setZone(timezone);
-  switch (nowtime.weekday) {
+  let nowtime = DateTime.now().setZone(timezone);
+  let today = nowtime.weekday;
+  period = timeTable[today];
+  switch (today) {
     case 0:
       res.send("<h1>Innaiku sunday da dei<h1>");
     case 1:
       if (firstHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.SOFTE);
+        return res.status(301).redirect(period.firstHour);
       } else if (secondHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DM);
+        return res.status(301).redirect(period.secondHour);
       } else if (thirdHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.ML);
+        return res.status(301).redirect(period.thirdHour);
       } else if (fourthHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.IOT);
+        return res.status(301).redirect(period.fourthHour);
       } else if (fifthHourInterval.contains(nowtime)) {
-        return res.redirect(process.env.WS);
+        return res.redirect(period.fifthHour);
       } else {
         return res.send(
           "<h1>innum time irruku aprm va (still there is time come back later)<h1>"
@@ -62,15 +166,15 @@ app.route("/g2").get((req, res) => {
 
     case 2:
       if (firstHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.LIB);
+        return res.status(301).redirect(period.firstHour);
       } else if (secondHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.IOT);
+        return res.status(301).redirect(period.secondHour);
       } else if (thirdHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.SOFTE);
+        return res.status(301).redirect(period.thirdHour);
       } else if (fourthHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DM);
+        return res.status(301).redirect(period.fourthHour);
       } else if (fifthHourInterval.contains(nowtime)) {
-        return res.redirect(process.env.CYBER);
+        return res.redirect(period.fifthHour);
       } else {
         return res.send(
           "<h1>innum time irruku aprm va (still there is time come back later)<h1>"
@@ -79,13 +183,15 @@ app.route("/g2").get((req, res) => {
 
     case 3:
       if (firstHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.ML);
+        return res.status(301).redirect(period.firstHour);
       } else if (secondHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.WS);
+        return res.status(301).redirect(period.secondHour);
       } else if (thirdHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DAA);
-      } else if (wedFourthHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.IOTLAB);
+        return res.status(301).redirect(period.thirdHour);
+      } else if (fourthHourInterval.contains(nowtime)) {
+        return res.status(301).redirect(period.fourthHour);
+      } else if (fifthHourInterval.contains(nowtime)) {
+        return res.redirect(period.fifthHour);
       } else {
         return res.send(
           "<h1>innum time irruku aprm va (still there is time come back later)<h1>"
@@ -94,30 +200,31 @@ app.route("/g2").get((req, res) => {
 
     case 4:
       if (firstHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.CYBER);
+        return res.status(301).redirect(period.firstHour);
       } else if (secondHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DM);
+        return res.status(301).redirect(period.secondHour);
       } else if (thirdHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.SOFTE);
+        return res.status(301).redirect(period.thirdHour);
       } else if (fourthHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DAALAB);
+        return res.status(301).redirect(period.fourthHour);
       } else if (fifthHourInterval.contains(nowtime)) {
-        return res.redirect(process.env.LIB);
+        return res.redirect(period.fifthHour);
       } else {
         return res.send(
           "<h1>innum time irruku aprm va (still there is time come back later)<h1>"
         );
       }
-
     case 5:
       if (firstHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.WS);
+        return res.status(301).redirect(period.firstHour);
       } else if (secondHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DAA);
+        return res.status(301).redirect(period.secondHour);
       } else if (thirdHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.IOT);
-      } else if (wedFourthHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DMLAB);
+        return res.status(301).redirect(period.thirdHour);
+      } else if (fourthHourInterval.contains(nowtime)) {
+        return res.status(301).redirect(period.fourthHour);
+      } else if (fifthHourInterval.contains(nowtime)) {
+        return res.redirect(period.fifthHour);
       } else {
         return res.send(
           "<h1>innum time irruku aprm va (still there is time come back later)<h1>"
@@ -126,15 +233,15 @@ app.route("/g2").get((req, res) => {
 
     case 6:
       if (firstHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.TWM);
+        return res.status(301).redirect(period.firstHour);
       } else if (secondHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.DAA);
+        return res.status(301).redirect(period.secondHour);
       } else if (thirdHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.CYBER);
+        return res.status(301).redirect(period.thirdHour);
       } else if (fourthHourInterval.contains(nowtime)) {
-        return res.status(301).redirect(process.env.ML);
+        return res.status(301).redirect(period.fourthHour);
       } else if (fifthHourInterval.contains(nowtime)) {
-        return res.redirect(process.env.SOFTE);
+        return res.redirect(period.fifthHour);
       } else {
         return res.send(
           "<h1>innum time irruku aprm va (still there is time come back later)<h1>"

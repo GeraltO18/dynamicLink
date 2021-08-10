@@ -6,6 +6,7 @@
         {"src": "index.js", "use":"@now/node"}
     ],
     "routes": [
-        {"src":"/g2","dest":"index.js"}
+        {"src":"/g2","dest":"index.js"},
+        {"src":"/g2/update","dest":"index.js"}
     ]
 }
