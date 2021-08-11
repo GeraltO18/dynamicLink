@@ -231,7 +231,7 @@ router.get("/class", (req, res) => {
 router.post("/update", (req, res) => {
   const { day, hour, classLink } = req.body;
   timeTable[day][hour] = keyVal[classLink];
-  console.log(timeTable);
+  console.log(`updated ${(day, hour, classLink)}`);
   res.redirect("/g2/update");
 });
 
