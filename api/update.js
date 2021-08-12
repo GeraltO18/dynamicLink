@@ -122,6 +122,11 @@ const keyVal = {
   TWM: classes.TWM,
 };
 
+let valKey = {};
+Object.keys(keyVal).forEach((key) => {
+  valKey[keyVal[key]] = key;
+});
+
 router.get("/class", (req, res) => {
   let nowtime = DateTime.now().setZone(timezone);
   let today = nowtime.weekday;
@@ -227,16 +232,20 @@ router.get("/class", (req, res) => {
       }
   }
 });
-
+let updatemsg = ``;
 router.post("/update", (req, res) => {
   const { day, hour, classLink } = req.body;
   timeTable[day][hour] = keyVal[classLink];
-  console.log(`updated ${day},${hour},${classLink}`);
+  updatemsg = `updated ${day} , ${hour} , ${classLink}`;
   res.redirect("/g2/update");
 });
 
 router.get("/update", (req, res) => {
-  res.render("update.html");
+  res.render("update.html", {
+    timeTable: timeTable,
+    valKey: valKey,
+    update: updatemsg,
+  });
 });
 
 module.exports = router;

@@ -29,8 +29,8 @@
       }
      
       button {
-      background-color: black;
-      color: white;
+      background-color: var(--gray);
+      color: #f39c12;
       padding: 14px 0;
       margin: 10px 0;
       border: none;
@@ -41,8 +41,8 @@
       text-align:center;
       font-size:18;
       }
-      button:hover {
-      opacity: 0.8;
+      .button:hover {
+        opacity:0.8%
       }
       .formcontainer {
       text-align: center;
@@ -105,7 +105,110 @@ select::-ms-expand {
 		background-position: 0% 50%;
 	}
 }
+table.products-table {
+  border-collapse: separate;
+  border-radius: 10px;
+  border-spacing: 0;
+  box-shadow: 0 0 25px #aaa;
+  margin: 4rem 0;
+  width: 100%;
+}
 
+th {
+  background-color: var(--darkgray);
+  font-weight: normal;
+  border-bottom: 1px solid #d1d1d1;
+  color: #f39c12;
+}
+
+th,
+td {
+  line-height: 1.5;
+  padding: 0.75em;
+  text-align: center;
+  color: #f39c12;
+}
+
+td {
+  background-color: var(--gray);
+}
+
+td:first-child {
+  font-weight: bold;
+  text-align: left;
+}
+
+tbody tr:nth-child(odd) td {
+  background-color: var(--darkgray);
+}
+
+thead th:first-child {
+    border-top-left-radius: 10px;
+    text-align: left;
+}
+
+thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* Stack rows vertically on small screens */
+@media (max-width: 30rem) {
+  /* Hide column labels */
+  thead tr {
+    position: absolute;
+    top: -9999rem;
+    left: -9999rem;
+  }
+
+  tbody tr td {
+    border-radius: none;
+    text-align: left;
+  }
+
+  tbody tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  tbody tr:last-child td:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  /* Leave a space between table rows */
+  tr + tr td:first-child {
+    border-top: 1px solid #d1d1d1;
+  }
+
+  /* Get table cells to act like rows */
+  tr,
+  td {
+    display: block;
+  }
+
+  td {
+    border: none;
+    /* Leave a space for data labels */
+    padding-left: 50%;
+  }
+
+  /* Data labels */
+  td:before {
+    content: attr(data-label);
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: -100%;
+    width: 100%;
+  }
+}
 
     </style>
   </head>
@@ -157,5 +260,130 @@ select::-ms-expand {
       </div>
       <button id="submit-btn" type="submit" ><strong>SUBMIT</strong></button>
     </form>
+    <div class="button">  
+      <p><%= update %> </p>  
+     </div>
   </body>
+  <table class="products-table">
+    <thead>
+      <tr>
+        <th>class</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="class">Monday</td>
+        <td data-label="1">
+          <%= valKey[timeTable[1]['firstHour']] %> 
+        </td>
+        <td data-label="2">
+          <%= valKey[timeTable[1]['secondHour']] %> 
+        </td>
+        <td data-label="3">
+          <%= valKey[timeTable[1]['thirdHour']] %> 
+        </td>
+        <td data-label="4">
+          <%= valKey[timeTable[1]['fourthHour']] %> 
+        </td>
+        <td data-label="5">
+          <%= valKey[timeTable[1]['fifthHour']] %> 
+        </td>
+      </tr>
+      <tr>
+        <td data-label="class">Tuesday</td>
+        <td data-label="1">
+          <%= valKey[timeTable[2]['firstHour']] %> 
+        </td>
+        <td data-label="2">
+          <%= valKey[timeTable[3]['secondHour']] %> 
+        </td>
+        <td data-label="3">
+          <%= valKey[timeTable[4]['thirdHour']] %> 
+        </td>
+        <td data-label="4">
+          <%= valKey[timeTable[5]['fourthHour']] %> 
+        </td>
+        <td data-label="5">
+          <%= valKey[timeTable[6]['fifthHour']] %> 
+        </td>
+      </tr>
+      <tr>
+        <td data-label="class">Wednesday</td>
+        <td data-label="1">
+          <%= valKey[timeTable[3]['firstHour']] %> 
+        </td>
+        <td data-label="2">
+          <%= valKey[timeTable[3]['secondHour']] %> 
+        </td>
+        <td data-label="3">
+          <%= valKey[timeTable[3]['thirdHour']] %> 
+        </td>
+        <td data-label="4">
+          <%= valKey[timeTable[3]['fourthHour']] %> 
+        </td>
+        <td data-label="5">
+          <%= valKey[timeTable[3]['fifthHour']] %> 
+        </td>
+      </tr>
+      <tr>
+        <td data-label="class">Thursday</td>
+        <td data-label="1">
+          <%= valKey[timeTable[4]['firstHour']] %> 
+        </td>
+        <td data-label="2">
+          <%= valKey[timeTable[4]['secondHour']] %> 
+        </td>
+        <td data-label="3">
+          <%= valKey[timeTable[4]['thirdHour']] %> 
+        </td>
+        <td data-label="4">
+          <%= valKey[timeTable[4]['fourthHour']] %> 
+        </td>
+        <td data-label="5">
+          <%= valKey[timeTable[4]['fifthHour']] %> 
+        </td>
+      </tr>
+      <tr>
+        <td data-label="class">Friday</td>
+        <td data-label="1">
+          <%= valKey[timeTable[5]['firstHour']] %> 
+        </td>
+        <td data-label="2">
+          <%= valKey[timeTable[5]['secondHour']] %> 
+        </td>
+        <td data-label="3">
+          <%= valKey[timeTable[5]['thirdHour']] %> 
+        </td>
+        <td data-label="4">
+          <%= valKey[timeTable[5]['fourthHour']] %> 
+        </td>
+        <td data-label="5">
+          <%= valKey[timeTable[5]['fifthHour']] %> 
+        </td>
+      </tr>
+      <tr>
+        <td data-label="class">Saturday</td>
+        <td data-label="1">
+          <%= valKey[timeTable[6]['firstHour']] %> 
+        </td>
+        <td data-label="2">
+          <%= valKey[timeTable[6]['secondHour']] %> 
+        </td>
+        <td data-label="3">
+          <%= valKey[timeTable[6]['thirdHour']] %> 
+        </td>
+        <td data-label="4">
+          <%= valKey[timeTable[6]['fourthHour']] %> 
+        </td>
+        <td data-label="5">
+          <%= valKey[timeTable[6]['fifthHour']] %> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </html>
