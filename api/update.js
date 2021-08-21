@@ -60,53 +60,6 @@ let timeTable = {
   },
 };
 
-cron.schedule("0 0 * * 0", () => {
-  timeTable = {
-    1: {
-      firstHour: classes.SOFTE,
-      secondHour: classes.DM,
-      thirdHour: classes.ML,
-      fourthHour: classes.IOT,
-      fifthHour: classes.WS,
-    },
-    2: {
-      firstHour: classes.LIB,
-      secondHour: classes.IOT,
-      thirdHour: classes.SOFTE,
-      fourthHour: classes.DM,
-      fifthHour: classes.CYBER,
-    },
-    3: {
-      firstHour: classes.ML,
-      secondHour: classes.WS,
-      thirdHour: classes.DAA,
-      fourthHour: classes.IOTLAB,
-      fifthHour: classes.IOTLAB,
-    },
-    4: {
-      firstHour: classes.CYBER,
-      secondHour: classes.DM,
-      thirdHour: classes.SOFTE,
-      fourthHour: classes.DAALAB,
-      fifthHour: classes.LIB,
-    },
-    5: {
-      firstHour: classes.WS,
-      secondHour: classes.DAA,
-      thirdHour: classes.IOT,
-      fourthHour: classes.DMLAB,
-      fifthHour: classes.DMLAB,
-    },
-    6: {
-      firstHour: classes.TWM,
-      secondHour: classes.DAA,
-      thirdHour: classes.CYBER,
-      fourthHour: classes.ML,
-      fifthHour: classes.SOFTE,
-    },
-  };
-});
-
 const keyVal = {
   SOFTE: classes.SOFTE,
   DM: classes.DM,
@@ -248,4 +201,80 @@ router.get("/update", (req, res) => {
   });
 });
 
+router.get("/reset", (req, res) => {
+  timeTable = {
+    1: {
+      firstHour: classes.SOFTE,
+      secondHour: classes.DM,
+      thirdHour: classes.ML,
+      fourthHour: classes.IOT,
+      fifthHour: classes.WS,
+    },
+    2: {
+      firstHour: classes.LIB,
+      secondHour: classes.IOT,
+      thirdHour: classes.SOFTE,
+      fourthHour: classes.DM,
+      fifthHour: classes.CYBER,
+    },
+    3: {
+      firstHour: classes.ML,
+      secondHour: classes.WS,
+      thirdHour: classes.DAA,
+      fourthHour: classes.IOTLAB,
+      fifthHour: classes.IOTLAB,
+    },
+    4: {
+      firstHour: classes.CYBER,
+      secondHour: classes.DM,
+      thirdHour: classes.SOFTE,
+      fourthHour: classes.DAALAB,
+      fifthHour: classes.LIB,
+    },
+    5: {
+      firstHour: classes.WS,
+      secondHour: classes.DAA,
+      thirdHour: classes.IOT,
+      fourthHour: classes.DMLAB,
+      fifthHour: classes.DMLAB,
+    },
+    6: {
+      firstHour: classes.TWM,
+      secondHour: classes.DAA,
+      thirdHour: classes.CYBER,
+      fourthHour: classes.ML,
+      fifthHour: classes.SOFTE,
+    },
+  };
+  res.redirect("/g2/update");
+});
+
 module.exports = router;
+/*
+ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠩⡄⠀⠀⠀⠀⢰⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⢀⣀⡀⢸⣇⣴⣾⣷⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣶⣦⣄⢻⣿⠿⢍⡼⣿⣿⠛⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⠿⢿⣿⡿⣿⣧⡌⣱⠟⠛⠶⣿⣿⡇⢀⣠⣴⠞⠓⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡴⠋⠀⠀⠈⢿⣼⡿⠀⡔⡉⠐⠍⢷⡏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣠⣄⣀⣿⣿⠁⠀⠀⢀⠀⠀⠀⠀⠀⡇⢴⠀⠈⠀⣷⣶⣖⡠⠶⠶⠆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣀⣾⣿⣿⣟⣛⣃⡀⡰⠋⠈⠀⠁⠀⠀⠀⠈⠚⡀⠊⠀⠇⢸⠉⢝⠐⢆⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⡄⣠⣤⣴⣶⣶⠊⠁⢀⡾⠁⠸⡇⠠⡤⠂⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⠟⠛⠈⠳⣄⣀⠀⠀⠙⠿⣿⣿⣟⡠⠔⠋⠀⢀⡼⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠸⣿⡿⠿⡄⠀⠀⠀⢀⣩⠞⠓⠒⠒⠒⠚⠉⠑⠂⠤⠒⠋⢀⡴⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠙⢄⠀⣴⠏⠀⢰⣾⠂⠀⠀⠀⠀⢹⠛⠰⠶⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠷⣤⣉⡻⢦⣀⠈⠻⢤⡀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⢻⣁⡀⣤⠟⣀⣀⣤⡘⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠩⡏⢠⡃⠀⠁⠀⢱⠀⢽⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣴⠇⠘⡇⠀⠀⡴⠞⠀⠊⣸⣿⣛⣢⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠠⢤⠤⣤⣾⣿⣻⣿⣿⣿⣧⣴⣷⣦⣤⣿⣶⣶⣶⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠈⠉⠉⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ _____    ______   __   __   ______       ______   __  __       __    __   ______   ______   __     __   ______  __  __    
+/\  __-. /\  __ \ /\ "-.\ \ /\  ___\     /\  == \ /\ \_\ \     /\ "-./  \ /\  ___\ /\  __ \ /\ \  _ \ \ /\__  _\/\ \_\ \   
+\ \ \/\ \\ \ \/\ \\ \ \-.  \\ \  __\     \ \  __< \ \____ \    \ \ \-./\ \\ \  __\ \ \ \/\ \\ \ \/ ".\ \\/_/\ \/\ \  __ \  
+ \ \____- \ \_____\\ \_\\"\_\\ \_____\    \ \_____\\/\_____\    \ \_\ \ \_\\ \_____\\ \_____\\ \__/".~\_\  \ \_\ \ \_\ \_\ 
+  \/____/  \/_____/ \/_/ \/_/ \/_____/     \/_____/ \/_____/     \/_/  \/_/ \/_____/ \/_____/ \/_/   \/_/   \/_/  \/_/\/_/ 
+                                                                                                                           
+ */
